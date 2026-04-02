@@ -1,38 +1,39 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEVENS PANEL - BUSCA NACIONAL</title>
+    <title>DASHBOARD SEVENS v2.0</title>
     <style>
-        body { background-color: #0d1117; color: #39ff14; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
-        .panel { width: 90%; max-width: 400px; border: 2px solid #39ff14; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(57, 255, 20, 0.2); background: #161b22; }
-        .header { border-bottom: 1px solid #39ff14; margin-bottom: 20px; text-align: center; }
-        h2 { color: #39ff14; margin: 0; font-size: 1.5rem; letter-spacing: 2px; }
-        input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #39ff14; background: #0d1117; color: #39ff14; border-radius: 5px; box-sizing: border-box; text-align: center; font-size: 1.1rem; }
-        .btn { display: block; width: 100%; padding: 12px; background: #39ff14; color: #000; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; text-transform: uppercase; margin-bottom: 10px; }
-        .btn:hover { background: #2ea043; }
-        #resultado { margin-top: 20px; max-height: 400px; overflow-y: auto; padding-right: 5px; }
-        .adv-card { border: 1px dashed #39ff14; padding: 15px; margin-bottom: 15px; border-radius: 5px; background: #0d1117; }
-        .adv-card strong { display: block; font-size: 1.1rem; margin-bottom: 5px; }
-        .adv-card small { display: block; color: #8b949e; margin-bottom: 10px; }
-        .wa-btn { display: inline-block; width: 100%; padding: 10px; background: #25d366; color: #fff; text-decoration: none; text-align: center; border-radius: 5px; font-weight: bold; }
-        .error { color: #f85149; text-align: center; display: none; margin-top: 10px; }
-        footer { font-size: 0.7rem; color: #8b949e; text-align: center; margin-top: 20px; }
+        body { background-color: #000; color: #0f0; font-family: 'Courier New', monospace; padding: 20px; text-align: center; }
+        .panel { border: 2px solid #0f0; padding: 20px; border-radius: 15px; box-shadow: 0 0 20px rgba(0,255,0,0.3); max-width: 400px; margin: auto; }
+        h2 { margin-bottom: 5px; text-shadow: 0 0 10px #0f0; }
+        input { background: #111; border: 1px solid #0f0; color: #0f0; padding: 12px; width: 85%; margin-bottom: 15px; text-align: center; font-size: 1.1em; border-radius: 5px; }
+        .btn { background: #0f0; color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px; text-transform: uppercase; }
+        .error { color: #ff4444; margin-top: 15px; display: none; font-weight: bold; }
+        #resultado { margin-top: 20px; text-align: left; }
+        .adv-card { border: 1px solid #0f0; background: rgba(0,255,0,0.05); margin-bottom: 15px; padding: 15px; border-radius: 8px; border-left: 5px solid #0f0; }
+        .wa-btn { display: block; background: #25d366; color: #fff; padding: 10px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; text-align: center; }
+        footer { margin-top: 20px; font-size: 0.7rem; color: #444; }
     </style>
 </head>
 <body>
+
 <div class="panel">
     <div class="header">
         <h2>DASHBOARD SEVENS</h2>
-        <p style="font-size: 0.8rem; margin: 5px 0;">BUSCA TRIBUTÁRIA NACIONAL</p>
+        <p style="font-size: 0.8rem;">BUSCA TRIBUTÁRIA NACIONAL</p>
     </div>
-    <input type="number" id="dddInput" placeholder="DIGITE O DDD (EX: 62)">
-    <button class="btn" onclick="consultarBanco()">Consultar Banco de Dados</button>
-    <div id="errorMsg" class="error">DDD ainda não mapeado no sistema.</div>
+
+    <input type="number" id="dddInput" placeholder="DIGITE O DDD (ex: 27)">
+    <button class="btn" onclick="consultarBanco()">CONSULTAR BANCO DE DADOS</button>
+    
+    <div id="errorMsg" class="error">DDD NÃO ENCONTRADO NO SISTEMA</div>
     <div id="resultado"></div>
+
     <footer>SISTEMA OPERACIONAL SEVENS v2.0</footer>
 </div>
+
 <script>
 const database = [
     { ddd: "11", nome: "Dra. Ana Paula Ferreira", oab: "SP 352.441", esp: "Recuperação de Impostos", link: "https://wa.me/5511988771122" },
@@ -40,29 +41,41 @@ const database = [
     { ddd: "31", nome: "Dr. Ricardo Oliveira", oab: "MG 144.223", esp: "Simples Nacional", link: "https://wa.me/5531992233445" },
     { ddd: "27", nome: "Dr. Felipe Andrade", oab: "ES 22.441", esp: "Comércio Exterior", link: "https://wa.me/5527995544332" },
     { ddd: "62", nome: "Dr. Paulo Henrique Santos", oab: "GO 45.332", esp: "Tributação Rural", link: "https://wa.me/5562991144556" },
+    { ddd: "41", nome: "Dra. Eliane Rocha", oab: "PR 88.220", esp: "Tributário Industrial", link: "https://wa.me/5541991122334" },
+    { ddd: "51", nome: "Dr. Sergio Mattos", oab: "RS 12.440", esp: "Compliance Fiscal", link: "https://wa.me/5551981144223" },
+    { ddd: "71", nome: "Dr. Rodrigo Castro", oab: "BA 41.220", esp: "Consultoria e Gestão", link: "https://wa.me/5571991122334" },
     { ddd: "85", nome: "Dr. Rafael Amaral", oab: "CE 14.550", esp: "Incentivos Fiscais", link: "https://wa.me/5585932661010" },
-    { ddd: "92", nome: "Dra. Sandra Gomes", oab: "AM 12.440", esp: "Zona Franca de Manaus", link: "https://wa.me/5592981144223" }];
-         
-
+    { ddd: "92", nome: "Dra. Sandra Gomes", oab: "AM 12.440", esp: "Zona Franca de Manaus", link: "https://wa.me/5592981144223" }
+];
 
 function consultarBanco() {
     const dddBusca = document.getElementById('dddInput').value;
     const listaResultados = document.getElementById('resultado');
     const erroMsg = document.getElementById('errorMsg');
+    
     listaResultados.innerHTML = "";
     erroMsg.style.display = "none";
+
     const resultados = database.filter(adv => adv.ddd === dddBusca);
+
     if (resultados.length > 0) {
         resultados.forEach(adv => {
             const item = document.createElement('div');
             item.className = 'adv-card';
-            item.innerHTML = `<strong>${adv.nome}</strong><small>${adv.esp}</small><a href="${adv.link}" target="_blank" class="wa-btn">WhatsApp</a>`;
+            item.innerHTML = `
+                <strong>${adv.nome}</strong><br>
+                <span style="font-size:0.85em; color:#fff; background:#222; padding:2px 5px; border-radius:3px;">OAB: ${adv.oab}</span><br>
+                <p style="margin:8px 0; font-size:0.9em; color:#ccc;">${adv.esp}</p>
+                <a href="${adv.link}" target="_blank" class="wa-btn">WhatsApp</a>
+            `;
             listaResultados.appendChild(item);
         });
     } else {
-        if (dddBusca !== "") { erroMsg.style.display = "block"; }
+        erroMsg.style.display = "block";
     }
 }
 </script>
+
 </body>
 </html>
+
