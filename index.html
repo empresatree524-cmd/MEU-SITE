@@ -3,30 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEVENS PANEL</title>
+    <title>SEVENS PANEL - BUSCA</title>
     <style>
         body { background-color: #0d1117; color: #fff; font-family: 'Courier New', monospace; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .panel { width: 90%; max-width: 400px; border: 1px solid #238636; border-radius: 10px; padding: 20px; background: rgba(13, 17, 23, 0.9); box-shadow: 0 0 15px #238636; }
-        .header { text-align: center; border-bottom: 1px solid #238636; padding-bottom: 10px; margin-bottom: 20px; }
-        h2 { color: #238636; margin: 0; font-size: 1.5rem; }
-        .status-bar { font-size: 0.8rem; color: #8b949e; margin-top: 5px; }
-        .btn { display: block; width: 100%; padding: 12px; margin: 10px 0; text-align: center; background: transparent; border: 1px solid #238636; color: #238636; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s; box-sizing: border-box; }
-        .btn:hover { background: #238636; color: #fff; box-shadow: 0 0 10px #238636; }
-        .footer { text-align: center; font-size: 0.7rem; color: #f85149; margin-top: 20px; text-transform: uppercase; letter-spacing: 2px; }
+        .panel { width: 90%; max-width: 400px; border: 1px solid #238636; border-radius: 10px; padding: 20px; background: rgba(13, 17, 23, 0.9); box-shadow: 0 0 15px #238636; text-align: center; }
+        .header { border-bottom: 1px solid #238636; padding-bottom: 10px; margin-bottom: 20px; }
+        h2 { color: #238636; margin: 0; font-size: 1.2rem; }
+        input { width: 100%; padding: 12px; margin: 10px 0; background: #0d1117; border: 1px solid #238636; color: #00ff41; text-align: center; border-radius: 5px; outline: none; box-sizing: border-box; font-size: 1rem; }
+        .btn { display: block; width: 100%; padding: 12px; margin: 5px 0; background: #238636; border: none; color: #fff; cursor: pointer; border-radius: 5px; font-weight: bold; text-decoration: none; box-sizing: border-box; }
+        #resultado { margin-top: 20px; text-align: left; font-size: 0.9rem; }
+        .adv-card { border: 1px dashed #238636; padding: 10px; margin-bottom: 10px; border-radius: 5px; background: rgba(35, 134, 54, 0.1); }
+        .footer { font-size: 0.7rem; color: #f85149; margin-top: 20px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
     <div class="panel">
         <div class="header">
             <h2>DASHBOARD SEVENS</h2>
-            <div class="status-bar">ID: ADMIN-TH | STATUS: ONLINE</div>
+            <div style="font-size: 0.7rem; color: #8b949e;">BUSCA TRIBUTÁRIA NACIONAL</div>
         </div>
 
-        <a href="https://wa.me/5511915107009" class="btn">WHATSAPP SUPORTE</a>
-        <a href="#" class="btn">PROJETOS ATIVOS</a>
-        <a href="#" class="btn">CONFIGURAÇÕES</a>
+        <input type="number" id="dddInput" placeholder="DIGITE O DDD (EX: 62)">
+        <button class="btn" onclick="buscar()">BUSCAR ADVOGADOS</button>
 
-        <div class="footer">Operando no Sigilo</div>
+        <div id="resultado"></div>
+
+        <a href="https://wa.me/5562911915107009" class="btn" style="background: transparent; border: 1px solid #238636; color: #238636; margin-top: 20px;">WHATSAPP SUPORTE</a>
+
+        <div class="footer">OPERANDO NO SIGILO</div>
     </div>
+
+    <script>
+        const database = [
+            { ddd: "62", nome: "Dr. Marcos Silva", especialidade: "Tributário - GO", link: "https://wa.me/5562999999999" },
+            { ddd: "62", nome: "Dra. Aline Souza", especialidade: "Fiscal - GO", link: "https://wa.me/5562988888888" },
+            { ddd: "11", nome: "Dr. Roberto Faro", especialidade: "Tributário - SP", link: "https://wa.me/5511977777777" }
+        ];
+
+        function buscar() {
+            const ddd = document.getElementById('dddInput').value;
+            const resDiv = document.getElementById('resultado');
+            resDiv.innerHTML = "";
+
+            const filtrados = database.filter(adv => adv.ddd === ddd);
+
+            if (filtrados.length > 0) {
+                filtrados.forEach(adv => {
+                    resDiv.innerHTML += `
+                        <div class="adv-card">
+                            <strong>${adv.nome}</strong><br>
+                            ${adv.especialidade}<br>
+                            <a href="${adv.link}" target="_blank" style="color: #00ff41; text-decoration: none; font-weight: bold;">[ABRIR WHATSAPP]</a>
+                        </div>
+                    `;
+                });
+            } else {
+                resDiv.innerHTML = "<p style='color: #f85149; text-align: center;'>Nenhum advogado encontrado para este DDD.</p>";
+            }
+        }
+    </script>
 </body>
 </html>
