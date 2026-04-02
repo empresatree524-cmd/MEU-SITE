@@ -27,14 +27,51 @@
 
 <script>
 const database = [
+    // --- GOIÁS (62) --- 20 SELECCIONADOS
+    { ddd: "62", nome: "Ficht Advocacia Tributária", esp: "Defesa de Execuções Fiscais", link: "https://wa.me/5562981710106" },
+    { ddd: "62", nome: "Miziara Advogados", esp: "Tributário e Agronegócio", link: "https://wa.me/556232233000" },
+    { ddd: "62", nome: "Luan Mazza Advocacia", esp: "Empresarial e Fiscal", link: "https://wa.me/5562985821866" },
+    { ddd: "62", nome: "Ronaldo França Advogados", esp: "Contencioso Tributário", link: "https://wa.me/5562984837876" },
+    { ddd: "62", nome: "Chaves Advocacia", esp: "Administrativo e Fiscal", link: "https://wa.me/5562999641212" },
+    { ddd: "62", nome: "Brum & Associados", esp: "Recuperação de Impostos", link: "https://wa.me/556239454444" },
+    { ddd: "62", nome: "Dra. Isabella Arantes", esp: "Defesa Fiscal de Empresas", link: "https://wa.me/5562982210099" },
+    { ddd: "62", nome: "Oliveira & Advogados GO", esp: "Consultoria em ICMS", link: "https://wa.me/556232125566" },
+    { ddd: "62", nome: "Gomes Advocacia", esp: "Planejamento e Processos", link: "https://wa.me/5562981112233" },
+    { ddd: "62", nome: "Ferreira & Santos", esp: "Tributário Federal", link: "https://wa.me/556230918877" },
+    { ddd: "62", nome: "Marques & Reis", esp: "Direito Público e Fiscal", link: "https://wa.me/556232241010" },
+    { ddd: "62", nome: "Dra. Patrícia Lima", esp: "Consultoria em Taxas", link: "https://wa.me/5562992224455" },
+    { ddd: "62", nome: "Advocacia Central GO", esp: "Recuperação de Créditos", link: "https://wa.me/556232112233" },
+    { ddd: "62", nome: "Rocha & Silva Associados", esp: "Impostos Estaduais", link: "https://wa.me/5562985554433" },
+    { ddd: "62", nome: "Dra. Eliane Mendes", esp: "Especialista em ITCD", link: "https://wa.me/5562991118877" },
+    { ddd: "62", nome: "Soares & Fontes", esp: "Tributário Industrial", link: "https://wa.me/556230887766" },
+    { ddd: "62", nome: "GT Tributos Goiás", esp: "Auditoria e Fiscal", link: "https://wa.me/556236224411" },
+    { ddd: "62", nome: "Vaz & Associados", esp: "Contencioso de Alto Valor", link: "https://wa.me/556232231515" },
+    { ddd: "62", nome: "Mendes Advocacia", esp: "Defesa de Multas Fiscais", link: "https://wa.me/5562984112233" },
+    { ddd: "62", nome: "Goiás Fiscal Team", esp: "Recuperação de PIS/COFINS", link: "https://wa.me/556235412200" },
+
+    // --- SÃO PAULO (11) --- 20 SELECCIONADOS
     { ddd: "11", nome: "Velloza Advogados", esp: "Processos Tributários", link: "https://wa.me/551131450055" },
     { ddd: "11", nome: "Mattos Filho", esp: "Contencioso Alto Valor", link: "https://wa.me/551131477600" },
-    { ddd: "62", nome: "Ficht Advocacia", esp: "Execuções Fiscais", link: "https://wa.me/5562981710106" },
-    { ddd: "62", nome: "Miziara Advogados", esp: "Tributário e Agro", link: "https://wa.me/556232233000" },
-    { ddd: "31", nome: "Moura & Tavares", esp: "Direito Tributário MG", link: "https://wa.me/553132815544" },
-    { ddd: "71", nome: "Gamil Föppel", esp: "Tributário e Penal", link: "https://wa.me/557130117350" },
-    { ddd: "81", nome: "Queiroz Cavalcanti", esp: "Especialista NE", link: "https://wa.me/558132174444" }
+    { ddd: "11", nome: "Pinheiro Neto Advogados", esp: "Consultoria Fiscal", link: "https://wa.me/551132478400" },
+    { ddd: "11", nome: "Machado Meyer", esp: "Estratégia Tributária", link: "https://wa.me/551131507000" },
+    { ddd: "11", nome: "Lefosse Advogados", esp: "Direito Fiscal e M&A", link: "https://wa.me/551130263500" },
+    { ddd: "11", nome: "BMA Advogados SP", esp: "Tributário Geral", link: "https://wa.me/551121794600" },
+    { ddd: "11", nome: "Demarest Advogados", esp: "Compliance e Impostos", link: "https://wa.me/551133561800" },
+    { ddd: "11", nome: "Trench Rossi Watanabe", esp: "Tributário Internacional", link: "https://wa.me/551130486800" },
+    { ddd: "11", nome: "TozziniFreire Advogados", esp: "Contencioso Administrativo", link: "https://wa.me/551150865000" },
+    { ddd: "11", nome: "Cescon Barrieu", esp: "Consultoria de Tributos", link: "https://wa.me/551130896500" },
+    { ddd: "11", nome: "Cascione Advogados", esp: "Planejamento Tributário", link: "https://wa.me/551130246100" },
+    { ddd: "11", nome: "Veirano Advogados SP", esp: "Fiscal e Aduaneiro", link: "https://wa.me/551123265000" },
+    { ddd: "11", nome: "Stocche Forbes", esp: "Tributário e Reestruturação", link: "https://wa.me/551133046000" },
+    { ddd: "11", nome: "Siqueira Castro", esp: "Defesa em Execução Fiscal", link: "https://wa.me/551131030100" },
+    { ddd: "11", nome: "Lacaz Martins", esp: "Tributário e Societário", link: "https://wa.me/551130402900" },
+    { ddd: "11", nome: "Gaia Silva Gaede", esp: "Especialista em IR e CSLL", link: "https://wa.me/551137339000" },
+    { ddd: "11", nome: "Koury Lopes Advogados", esp: "Tributário Consultivo", link: "https://wa.me/551132515411" },
+    { ddd: "11", nome: "Felsberg Advogados", esp: "Créditos e Recuperação", link: "https://wa.me/551131419100" },
+    { ddd: "11", nome: "Rolim Goulart Cardoso", esp: "Estrategistas Fiscais", link: "https://wa.me/551130745500" },
+    { ddd: "11", nome: "Souza Cescon Advogados", esp: "Contencioso Judicial", link: "https://wa.me/551130896500" }
 ];
+
 
 function consultarBanco() {
     const dddBusca = document.getElementById('dddInput').value.trim();
