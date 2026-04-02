@@ -1,122 +1,36 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEVENS PANEL - BUSCA NACIONAL</title>
+    <title>DASHBOARD SEVENS - V2</title>
     <style>
-        body { background-color: #0d1117; color: #fff; font-family: 'Courier New', monospace; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .panel { width: 90%; max-width: 400px; border: 1px solid #238636; border-radius: 10px; padding: 20px; background: rgba(13, 17, 23, 0.9); box-shadow: 0 0 15px #238636; text-align: center; }
-        .header { border-bottom: 1px solid #238636; padding-bottom: 10px; margin-bottom: 20px; }
-        h2 { color: #238636; margin: 0; font-size: 1.2rem; text-shadow: 0 0 5px #238636; }
-        input { width: 100%; padding: 12px; margin: 10px 0; background: #0d1117; border: 1px solid #238636; color: #00ff41; text-align: center; border-radius: 5px; outline: none; box-sizing: border-box; font-size: 1rem; }
-        .btn { display: block; width: 100%; padding: 12px; margin: 5px 0; background: #238636; border: none; color: #fff; cursor: pointer; border-radius: 5px; font-weight: bold; text-decoration: none; box-sizing: border-box; transition: 0.3s; }
-        .btn:hover { background: #2ea043; box-shadow: 0 0 10px #238636; }
-        #resultado { margin-top: 20px; text-align: left; font-size: 0.85rem; max-height: 300px; overflow-y: auto; padding-right: 5px; }
-        .adv-card { border: 1px dashed #238636; padding: 10px; margin-bottom: 10px; border-radius: 5px; background: rgba(35, 134, 54, 0.05); }
-        .footer { font-size: 0.7rem; color: #f85149; margin-top: 20px; letter-spacing: 2px; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #238636; border-radius: 10px; }
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; text-align: center; padding: 20px; }
+        .container { border: 2px solid #00ff41; border-radius: 10px; padding: 20px; max-width: 400px; margin: auto; box-shadow: 0 0 15px #00ff41; }
+        input { width: 80%; padding: 10px; margin: 10px 0; background: #1a1a1a; border: 1px solid #00ff41; color: #00ff41; text-align: center; border-radius: 5px; }
+        button { width: 85%; padding: 12px; background: #00ff41; color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 5px; }
+        .resultado-item { background: #1a1a1a; margin: 10px 0; padding: 10px; border-radius: 5px; border-left: 4px solid #00ff41; text-align: left; }
+        a { color: #fff; text-decoration: none; font-weight: bold; display: block; margin-top: 5px; background: #25d366; padding: 5px; text-align: center; border-radius: 3px; }
+        #erroMsg { color: #ff4141; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
-    <div class="panel">
-        <div class="header">
-            <h2>DASHBOARD SEVENS</h2>
-            <div style="font-size: 0.7rem; color: #8b949e;">BUSCA TRIBUTÁRIA NACIONAL</div>
-        </div>
 
-        <input type="number" id="dddInput" placeholder="DIGITE O DDD (EX: 62)">
-        <button class="btn" onclick="buscar()">CONSULTAR BANCO DE DADOS</button>
+<div class="container">
+    <h2>DASHBOARD SEVENS</h2>
+    <p>BUSCA TRIBUTÁRIA NACIONAL</p>
+    <input type="text" id="dddInput" placeholder="DIGITE O DDD (ex: 62)">
+    <button onclick="consultarBanco()">CONSULTAR BANCO DE DADOS</button>
+    <div id="erroMsg">DDD ainda não mapeado no sistema.</div>
+    <div id="listaResultados"></div>
+</div>
 
-        <div id="resultado"></div>
-
-        <a href="https://wa.me/5562911915107009" class="btn" style="background: transparent; border: 1px solid #238636; color: #238636; margin-top: 20px;">FALAR COM O ADMIN</a>
-
-        <div class="footer">OPERANDO NO SIGILO</div>
-    </div>
-
-    <script>
-        const database = [
-    // --- SÃO PAULO (DDD 11) --- 20 SELECIONADOS
+<script>
+const database = [
     { ddd: "11", nome: "Velloza Advogados", esp: "Processos Tributários", link: "https://wa.me/551131450055" },
-    { ddd: "11", nome: "Mattos Filho Associados", esp: "Contencioso de Alto Valor", link: "https://wa.me/551131477600" },
-    { ddd: "11", nome: "Pinheiro Neto Advogados", esp: "Defesa Fiscal Federal", link: "https://wa.me/551132478400" },
-    { ddd: "11", nome: "Machado Meyer", esp: "Tributário Estratégico", link: "https://wa.me/551131507000" },
-    { ddd: "11", nome: "Lefosse Advogados", esp: "Consultivo e Processual", link: "https://wa.me/551130891000" },
-    { ddd: "11", nome: "Demarest Advogados", esp: "Recuperação de Créditos", link: "https://wa.me/551133561800" },
-    { ddd: "11", nome: "TozziniFreire", esp: "Contencioso Administrativo", link: "https://wa.me/551150865000" },
-    { ddd: "11", nome: "BMA - Barbosa Müssnich", esp: "Estratégia Tributária", link: "https://wa.me/551121794600" },
-    { ddd: "11", nome: "Trench Rossi Watanabe", esp: "Compliance e Impostos", link: "https://wa.me/551130486800" },
-    { ddd: "11", nome: "Cescon Barrieu", esp: "Tributário Empresarial", link: "https://wa.me/551130896500" },
-    { ddd: "11", nome: "Veirano Advogados", esp: "Fiscal e Aduaneiro", link: "https://wa.me/551123135700" },
-    { ddd: "11", nome: "Siqueira Castro", esp: "Defesas em Execução Fiscal", link: "https://wa.me/551137049840" },
-    { ddd: "11", nome: "Gaia Silva Gaede", esp: "Consultoria de Tributos", link: "https://wa.me/551130666200" },
-    { ddd: "11", nome: "Stocche Forbes", esp: "Contencioso de Massa", link: "https://wa.me/551133555500" },
-    { ddd: "11", nome: "KLA Advogados", esp: "Planejamento Tributário", link: "https://wa.me/551137998100" },
-    { ddd: "11", nome: "Cascione Pulino", esp: "Tributário Integrado", link: "https://wa.me/551130303030" },
-    { ddd: "11", nome: "Felsberg Advogados", esp: "Reestruturação e Fiscal", link: "https://wa.me/551131419100" },
-    { ddd: "11", nome: "Lobo de Rizzo", esp: "Processual Civil/Trib", link: "https://wa.me/551135272000" },
-    { ddd: "11", nome: "Ribeiro Advogados", esp: "Especialista em ICMS", link: "https://wa.me/5511988587077" },
-    { ddd: "11", nome: "Mantoan Advocacia", esp: "Defesa de Patrimônio", link: "https://wa.me/5511993778954" },
-
-    // --- RIO DE JANEIRO (DDD 21) --- 20 SELECIONADOS
-    { ddd: "21", nome: "Sergio Bermudes", esp: "Grandes Causas Tributárias", link: "https://wa.me/552121739200" },
-    { ddd: "21", nome: "Ulhôa Canto", esp: "Especialista em IRPJ/CSLL", link: "https://wa.me/552138243265" },
-    { ddd: "21", nome: "Wald Advogados", esp: "Contencioso Administrativo", link: "https://wa.me/552121590000" },
-    { ddd: "21", nome: "Tostes & Sobral", esp: "Tributário e Aduaneiro", link: "https://wa.me/552121040404" },
-    { ddd: "21", nome: "Bichara Advogados", esp: "Recuperação de Tributos", link: "https://wa.me/552132313700" },
-    { ddd: "21", nome: "Lobo & Ibeas", esp: "Consultoria Fiscal", link: "https://wa.me/552125176200" },
-    { ddd: "21", nome: "BBL Advogados", esp: "Estratégia Fiscal RJ", link: "https://wa.me/552139733000" },
-    { ddd: "21", nome: "Tauil & Chequer", esp: "Energia e Tributário", link: "https://wa.me/552121274210" },
-    { ddd: "21", nome: "Trench Rossi RJ", esp: "Compliance Tributário", link: "https://wa.me/552122064900" },
-    { ddd: "21", nome: "Siqueira Castro RJ", esp: "Defesa de Execuções", link: "https://wa.me/552122238800" },
-    { ddd: "21", nome: "Gueiros & Advogados", esp: "ICMS e ISS Rio", link: "https://wa.me/552125334460" },
-    { ddd: "21", nome: "Abreu Advogados", esp: "Créditos Fiscais", link: "https://wa.me/552130303030" },
-    { ddd: "21", nome: "Monteiro Mota", esp: "Contencioso de Massa", link: "https://wa.me/5521980461500" },
-    { ddd: "21", nome: "Hugo Jerke", esp: "Tributário Digital", link: "https://wa.me/552132322625" },
-    { ddd: "21", nome: "Licks Attorneys", esp: "Propriedade e Fiscal", link: "https://wa.me/552139733300" },
-    { ddd: "21", nome: "Fraga & Associados", esp: "Planejamento Tributário", link: "https://wa.me/552125091212" },
-    { ddd: "21", nome: "Dutra Advogados", esp: "Defesa de Multas", link: "https://wa.me/552122445566" },
-    { ddd: "21", nome: "Almeida Advogados", esp: "Consultivo Fiscal", link: "https://wa.me/552135270000" },
-    { ddd: "21", nome: "Cunha & Melo", esp: "Tributário Federal", link: "https://wa.me/552122105566" },
-    { ddd: "21", nome: "Silva & Oliveira", esp: "Execução Fiscal RJ", link: "https://wa.me/552133221144" }
-
-                    // --- GOIÁS (62) --- 20 SELECIONADOS
-    { ddd: "62", nome: "Ficht Advocacia Tributária", esp: "Defesa de Execuções Fiscais", link: "https://wa.me/5562981710106" },
-    { ddd: "62", nome: "Miziara Advogados", esp: "Tributário e Agronegócio", link: "https://wa.me/556232233000" },
-    { ddd: "62", nome: "Luan Mazza Advocacia", esp: "Empresarial e Fiscal", link: "https://wa.me/5562985821866" },
-    { ddd: "62", nome: "Ronaldo França Advogados", esp: "Contencioso Tributário", link: "https://wa.me/5562984837876" },
-    { ddd: "62", nome: "Chaves Advocacia", esp: "Administrativo e Fiscal", link: "https://wa.me/5562999641212" },
-    { ddd: "62", nome: "Brum & Associados", esp: "Recuperação de Impostos", link: "https://wa.me/556239454444" },
-    { ddd: "62", nome: "Dra. Isabella Arantes", esp: "Defesa Fiscal de Empresas", link: "https://wa.me/5562982210099" },
-    { ddd: "62", nome: "Oliveira & Advogados GO", esp: "Consultoria em ICMS", link: "https://wa.me/556232125566" },
-    { ddd: "62", nome: "Gomes Advocacia", esp: "Planejamento e Processos", link: "https://wa.me/5562981112233" },
-    { ddd: "62", nome: "Ferreira & Santos", esp: "Tributário Federal", link: "https://wa.me/556230918877" },
-    { ddd: "62", nome: "Marques & Reis", esp: "Direito Público e Fiscal", link: "https://wa.me/556232241010" },
-    { ddd: "62", nome: "Dra. Patrícia Lima", esp: "Consultoria em Taxas", link: "https://wa.me/5562992224455" },
-    { ddd: "62", nome: "Advocacia Central GO", esp: "Recuperação de Créditos", link: "https://wa.me/556232112233" },
-    { ddd: "62", nome: "Rocha & Silva Associados", esp: "Impostos Estaduais", link: "https://wa.me/5562985554433" },
-    { ddd: "62", nome: "Dra. Eliane Mendes", esp: "Especialista em ITCD", link: "https://wa.me/5562991118877" },
-    { ddd: "62", nome: "Soares & Fontes", esp: "Tributário Industrial", link: "https://wa.me/556230887766" },
-    { ddd: "62", nome: "GT Tributos Goiás", esp: "Auditoria e Fiscal", link: "https://wa.me/556236224411" },
-    // --- GOIÁS (62) --- 20 SELECIONADOS
-    { ddd: "62", nome: "Ficht Advocacia Tributária", esp: "Defesa de Execuções Fiscais", link: "https://wa.me/5562981710106" },
-    { ddd: "62", nome: "Miziara Advogados", esp: "Tributário e Agronegócio", link: "https://wa.me/556232233000" },
-    { ddd: "62", nome: "Luan Mazza Advocacia", esp: "Empresarial e Fiscal", link: "https://wa.me/5562985821866" },
-    { ddd: "62", nome: "Ronaldo França Advogados", esp: "Contencioso Tributário", link: "https://wa.me/5562984837876" },
-    { ddd: "62", nome: "Chaves Advocacia", esp: "Administrativo e Fiscal", link: "https://wa.me/5562999641212" },
-    { ddd: "62", nome: "Brum & Associados", esp: "Recuperação de Impostos", link: "https://wa.me/556239454444" },
-    { ddd: "62", nome: "Dra. Isabella Arantes", esp: "Defesa Fiscal de Empresas", link: "https://wa.me/5562982210099" },
-    { ddd: "62", nome: "Oliveira & Advogados GO", esp: "Consultoria em ICMS", link: "https://wa.me/556232125566" },
-    { ddd: "62", nome: "Gomes Advocacia", esp: "Planejamento e Processos", link: "https://wa.me/5562981112233" },
-    { ddd: "62", nome: "Ferreira & Santos", esp: "Tributário Federal", link: "https://wa.me/556230918877" },
-    { ddd: "62", nome: "Marques & Reis", esp: "Direito Público e Fiscal", link: "https://wa.me/556232241010" },
-    { ddd: "62", nome: "Dra. Patrícia Lima", esp: "Consultoria em Taxas", link: "https://wa.me/5562992224455" },
-    { ddd: "62", nome: "Advocacia Central GO", esp: "Recuperação de Créditos", link: "https://wa.me/556232112233" },
-    { ddd: "62", nome: "Rocha & Silva Associados", esp: "Impostos Esconst database = [
-    { ddd: "11", nome: "Velloza Advogados", esp: "Processos Tributários", link: "https://wa.me/551131450055" },
+    { ddd: "11", nome: "Mattos Filho", esp: "Contencioso Alto Valor", link: "https://wa.me/551131477600" },
     { ddd: "62", nome: "Ficht Advocacia", esp: "Execuções Fiscais", link: "https://wa.me/5562981710106" },
+    { ddd: "62", nome: "Miziara Advogados", esp: "Tributário e Agro", link: "https://wa.me/556232233000" },
     { ddd: "31", nome: "Moura & Tavares", esp: "Direito Tributário MG", link: "https://wa.me/553132815544" },
     { ddd: "71", nome: "Gamil Föppel", esp: "Tributário e Penal", link: "https://wa.me/557130117350" },
     { ddd: "81", nome: "Queiroz Cavalcanti", esp: "Especialista NE", link: "https://wa.me/558132174444" }
@@ -138,8 +52,8 @@ function consultarBanco() {
             item.className = 'resultado-item';
             item.innerHTML = `
                 <strong>${adv.nome}</strong><br>
-                <small>${adv.esp}</small><br>
-                <a href="${adv.link}" target="_blank">Falar no WhatsApp</a>
+                <small>${adv.esp}</small>
+                <a href="${adv.link}" target="_blank">WhatsApp</a>
             `;
             listaResultados.appendChild(item);
         });
@@ -148,34 +62,5 @@ function consultarBanco() {
     }
 }
 </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-        function buscar() {
-            const ddd = document.getElementById('dddInput').value;
-            const resDiv = document.getElementById('resultado');
-            resDiv.innerHTML = "";
-            const filtrados = database.filter(adv => adv.ddd === ddd);
-            if (filtrados.length > 0) {
-                filtrados.forEach(adv => {
-                    resDiv.innerHTML += `
-                        <div class="adv-card">
-                            <strong>${adv.nome}</strong><br>
-                            ${adv.esp}<br>
-                            <a href="${adv.link}" target="_blank" style="color: #00ff41; text-decoration: none; font-weight: bold;">[CHAMAR NO WHATS]</a>
-                        </div>`;
-                });
-            } else {
-                resDiv.innerHTML = "<p style='color: #f85149; text-align: center;'>DDD ainda não mapeado no sistema.</p>";
-            }
-        }
-    </script>
 </body>
 </html>
