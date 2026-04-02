@@ -35,20 +35,50 @@
 </div>
 <script>
 const database = [
+        // --- GOIÁS (62) --- 20 SELECIONADOS
     { ddd: "62", nome: "Ficht Advocacia Tributária", esp: "Execuções Fiscais", link: "https://wa.me/5562981710106" },
     { ddd: "62", nome: "Miziara Advogados", esp: "Tributário e Agro", link: "https://wa.me/556232233000" },
     { ddd: "62", nome: "Luan Mazza Advocacia", esp: "Empresarial e Fiscal", link: "https://wa.me/5562985821866" },
     { ddd: "62", nome: "Ronaldo França Advogados", esp: "Contencioso Tributário", link: "https://wa.me/5562984837876" },
+    { ddd: "62", nome: "Chaves Advocacia", esp: "Administrativo e Fiscal", link: "https://wa.me/5562999641212" },
     { ddd: "62", nome: "Brum & Associados", esp: "Recuperação de Impostos", link: "https://wa.me/556239454444" },
-    { ddd: "11", nome: "Velloza Advogados", esp: "Processos Tributários", link: "https://wa.me/551131450055" },
-    { ddd: "11", nome: "Mattos Filho", esp: "Contencioso Alto Valor", link: "https://wa.me/551131477600" },
-    { ddd: "11", nome: "Pinheiro Neto Advogados", esp: "Consultoria Fiscal", link: "https://wa.me/551132478400" },
-    { ddd: "71", nome: "Gamil Föppel Advogados", esp: "Tributário e Penal", link: "https://wa.me/557130117350" },
-    { ddd: "71", nome: "Vila Nova & Advogados", esp: "Consultoria Fiscal BA", link: "https://wa.me/5571991223344" },
-    { ddd: "71", nome: "Tourinho Advogados", esp: "Tributário Empresarial", link: "https://wa.me/557134524455" },
-    { ddd: "81", nome: "Queiroz Cavalcanti", esp: "Especialista Tributário NE", link: "https://wa.me/558132174444" },
-    { ddd: "81", nome: "Da Fonte Advogados", esp: "Planejamento Tributário", link: "https://wa.me/558132557700" },
-    { ddd: "81", nome: "Recife Fiscal Associados", esp: "Dívida Ativa e ICMS", link: "https://wa.me/558133004455" }
+    { ddd: "62", nome: "Dra. Isabella Arantes", esp: "Defesa Fiscal", link: "https://wa.me/5562982210099" },
+    { ddd: "62", nome: "Oliveira & Advogados GO", esp: "Consultoria ICMS", link: "https://wa.me/556232125566" },
+    { ddd: "62", nome: "Marques & Reis", esp: "Direito Público e Fiscal", link: "https://wa.me/556232241010" },
+    { ddd: "62", nome: "Vaz & Associados", esp: "Contencioso Alto Valor", link: "https://wa.me/556232231515" },
+    { ddd: "62", nome: "Gomes Advocacia", esp: "Planejamento e Processos", link: "https://wa.me/5562991112233" },
+    { ddd: "62", nome: "Ferreira & Santos", esp: "Tributário Federal", link: "https://wa.me/556232114455" },
+    { ddd: "62", nome: "Dra. Patrícia Lima", esp: "Consultoria em Taxas", link: "https://wa.me/5562984445566" },
+    { ddd: "62", nome: "Advocacia Central GO", esp: "Recuperação de Créditos", link: "https://wa.me/556230998877" },
+    { ddd: "62", nome: "Rocha & Silva Associados", esp: "Impostos Estaduais", link: "https://wa.me/5562981223344" },
+    { ddd: "62", nome: "Dra. Eliane Mendes", esp: "Defesa de Execuções", link: "https://wa.me/556232415566" },
+    { ddd: "62", nome: "Santana Tributos", esp: "Auditoria Fiscal", link: "https://wa.me/5562988776655" },
+    { ddd: "62", nome: "Cavalcanti Advogados", esp: "Empresarial Tributário", link: "https://wa.me/556230881122" },
+    { ddd: "62", nome: "Barros & Lima", esp: "Dívida Ativa", link: "https://wa.me/5562992223344" },
+    { ddd: "62", nome: "Goiânia Tax Experts", esp: "Consultoria Geral", link: "https://wa.me/556232554433" },
+
+    // --- SOROCABA/ITAPETININGA (15) --- 20 SELECIONADOS
+    { ddd: "15", nome: "Sorocaba Fiscal Adv", esp: "ICMS e IPI Interior", link: "https://wa.me/551532321100" },
+    { ddd: "15", nome: "Dra. Aline Souza", esp: "Tributário Industrial", link: "https://wa.me/5515991112233" },
+    { ddd: "15", nome: "Itapetininga Tributos", esp: "Defesa Fiscal Agro", link: "https://wa.me/551532714455" },
+    { ddd: "15", nome: "Mendes & Associados 15", esp: "Execuções Fiscais", link: "https://wa.me/5515992224455" },
+    { ddd: "15", nome: "Rocha Advocacia Fiscal", esp: "Recuperação de Créditos", link: "https://wa.me/551532116677" },
+    { ddd: "15", nome: "Dra. Beatriz Santos", esp: "Consultoria de Impostos", link: "https://wa.me/5515981223344" },
+    { ddd: "15", nome: "Oliveira & Silva Soro", esp: "Direito Tributário", link: "https://wa.me/551533445566" },
+    { ddd: "15", nome: "Ferreira & Nobre 15", esp: "Compliance e Taxas", link: "https://wa.me/5515988771122" },
+    { ddd: "15", nome: "Barbosa Advocacia", esp: "Impostos Estaduais", link: "https://wa.me/551532554433" },
+    { ddd: "15", nome: "Dra. Carla Mendes", esp: "Defesa de Empresas", link: "https://wa.me/5515991118877" },
+    { ddd: "15", nome: "Viana & Associados", esp: "Recuperação Fiscal", link: "https://wa.me/551532221144" },
+    { ddd: "15", nome: "Lopes Tributaristas", esp: "Especialista em ISS", link: "https://wa.me/5515981119988" },
+    { ddd: "15", nome: "Santana & Lima", esp: "Contencioso Judicial", link: "https://wa.me/551533221199" },
+    { ddd: "15", nome: "Dra. Marina Holanda", esp: "Tributário Federal", link: "https://wa.me/5515992331122" },
+    { ddd: "15", nome: "Recife Soro Advisors", esp: "Planejamento Fiscal", link: "https://wa.me/551533004455" },
+    { ddd: "15", nome: "Cavalcanti Advocacia", esp: "Dívida Ativa", link: "https://wa.me/5515991114433" },
+    { ddd: "15", nome: "Dra. Juliana Ferreira", esp: "Defesa de Autuações", link: "https://wa.me/5515982226655" },
+    { ddd: "15", nome: "Soares Associados 15", esp: "Tributário Industrial", link: "https://wa.me/551532456611" },
+    { ddd: "15", nome: "Costa Advocacia Interior", esp: "Consultoria Empresarial", link: "https://wa.me/5515985551122" },
+    { ddd: "15", nome: "Dra. Letícia Costa", esp: "Tributário e Civil", link: "https://wa.me/5515992225544" }
+
 ];
 
 function consultarBanco() {
