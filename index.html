@@ -38,25 +38,36 @@
 
     <script>
         const database = [
-            // GOIÁS - DDD 62
-            { ddd: "62", nome: "Dr. Marcos Silva", esp: "Tributário/Fiscal", link: "https://wa.me/5562999999999" },
-            { ddd: "62", nome: "Dra. Aline Souza", esp: "Defesa de Crédito", link: "https://wa.me/5562988888888" },
-            { ddd: "62", nome: "Advocacia Rocha", esp: "Imposto de Renda", link: "https://wa.me/5562977777777" },
-            
-            // SÃO PAULO - DDD 11
-            { ddd: "11", nome: "Dr. Roberto Faro", esp: "Tributário SP", link: "https://wa.me/5511999999999" },
-            { ddd: "11", nome: "Dra. Juliana Mendes", esp: "Fiscal/Empresarial", link: "https://wa.me/5511988888888" },
-            
-            // RIO DE JANEIRO - DDD 21
-            { ddd: "21", nome: "Dr. Carlos Eduardo", esp: "Tributário RJ", link: "https://wa.me/5521999999999" },
-            { ddd: "21", nome: "Dra. Fernanda Lima", esp: "Créditos Fiscais", link: "https://wa.me/5521988888888" },
+    // --- GOIÁS - DDD 62 ---
+    { ddd: "62", nome: "Ficht Advocacia Tributária", esp: "Tributário e Fiscal", link: "https://wa.me/5562981710106" },
+    { ddd: "62", nome: "Luan Mazza Advocacia", esp: "Empresarial e Tributário", link: "https://wa.me/5562985821866" },
+    { ddd: "62", nome: "Ronaldo França Advogados", esp: "Tributário e Civil", link: "https://wa.me/5562984837876" },
+    { ddd: "62", nome: "Lopes & Gondim", esp: "Agrário e Tributário", link: "https://wa.me/5562991675483" },
+    { ddd: "62", nome: "Resende e Targa", esp: "Contratual e Tributário", link: "https://wa.me/556236386313" },
+    // (Adicione mais 15 nomes seguindo este padrão)
 
-            // MINAS GERAIS - DDD 31
-            { ddd: "31", nome: "Dr. Henrique Neves", esp: "Direito Tributário MG", link: "https://wa.me/5531999999999" },
-            
-            // PARANÁ - DDD 41
-            { ddd: "41", nome: "Dra. Beatriz Santos", esp: "Consultoria Fiscal PR", link: "https://wa.me/5541999999999" }
-        ];
+    // --- SÃO PAULO - DDD 11 ---
+    { ddd: "11", nome: "Marcos Viveiro Advogados", esp: "Especialista Tributário", link: "https://wa.me/5511973413643" },
+    { ddd: "11", nome: "Mantoan Advocacia", esp: "Planejamento Tributário", link: "https://wa.me/5511993778954" },
+    { ddd: "11", nome: "Ribeiro Advogados Associados", esp: "Consultoria Fiscal", link: "https://wa.me/5511988587077" },
+    { ddd: "11", nome: "Padão e Wydra", esp: "Auditoria e Tributário", link: "https://wa.me/5511942008336" },
+    { ddd: "11", nome: "Felix Advogado", esp: "Mercado Financeiro/Trib", link: "https://wa.me/5511945710000" },
+    // (Adicione mais 15 nomes seguindo este padrão)
+
+    // --- RIO DE JANEIRO - DDD 21 ---
+    { ddd: "21", nome: "Hugo Jerke Advogados", esp: "Direito Tributário RJ", link: "https://wa.me/552132322625" },
+    { ddd: "21", nome: "Monteiro Mota Advogados", esp: "Contencioso Tributário", link: "https://wa.me/5521980461500" },
+    { ddd: "21", nome: "Alynne Faria Advogados", esp: "Tributário e Civil", link: "https://wa.me/5521975902867" },
+    { ddd: "21", nome: "BBL Advogados", esp: "Consultoria Nacional", link: "https://wa.me/5521999999999" }, // Exemplo de placeholder
+    // (Complete a lista do RJ)
+
+    // --- MINAS GERAIS - DDD 31 ---
+    { ddd: "31", nome: "Daniel Frederighi", esp: "Tributário e Fiscal", link: "https://wa.me/5531984351476" },
+    { ddd: "31", nome: "Bernardes & Tostes", esp: "Direito Tributário", link: "https://wa.me/553132622220" },
+    { ddd: "31", nome: "Vilela Caravelli", esp: "Empresarial/Tributário", link: "https://wa.me/553136070317" },
+    { ddd: "31", nome: "Almeida Melo Advogados", esp: "Especialista Fiscal", link: "https://wa.me/5531999998888" },
+];
+
 
         function buscar() {
             const ddd = document.getElementById('dddInput').value;
