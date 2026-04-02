@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEVENS PANEL - BUSCA</title>
+    <title>SEVENS PANEL - BUSCA NACIONAL</title>
     <style>
         body { background-color: #0d1117; color: #fff; font-family: 'Courier New', monospace; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         .panel { width: 90%; max-width: 400px; border: 1px solid #238636; border-radius: 10px; padding: 20px; background: rgba(13, 17, 23, 0.9); box-shadow: 0 0 15px #238636; text-align: center; }
         .header { border-bottom: 1px solid #238636; padding-bottom: 10px; margin-bottom: 20px; }
-        h2 { color: #238636; margin: 0; font-size: 1.2rem; }
+        h2 { color: #238636; margin: 0; font-size: 1.2rem; text-shadow: 0 0 5px #238636; }
         input { width: 100%; padding: 12px; margin: 10px 0; background: #0d1117; border: 1px solid #238636; color: #00ff41; text-align: center; border-radius: 5px; outline: none; box-sizing: border-box; font-size: 1rem; }
-        .btn { display: block; width: 100%; padding: 12px; margin: 5px 0; background: #238636; border: none; color: #fff; cursor: pointer; border-radius: 5px; font-weight: bold; text-decoration: none; box-sizing: border-box; }
-        #resultado { margin-top: 20px; text-align: left; font-size: 0.9rem; }
-        .adv-card { border: 1px dashed #238636; padding: 10px; margin-bottom: 10px; border-radius: 5px; background: rgba(35, 134, 54, 0.1); }
+        .btn { display: block; width: 100%; padding: 12px; margin: 5px 0; background: #238636; border: none; color: #fff; cursor: pointer; border-radius: 5px; font-weight: bold; text-decoration: none; box-sizing: border-box; transition: 0.3s; }
+        .btn:hover { background: #2ea043; box-shadow: 0 0 10px #238636; }
+        #resultado { margin-top: 20px; text-align: left; font-size: 0.85rem; max-height: 300px; overflow-y: auto; padding-right: 5px; }
+        .adv-card { border: 1px dashed #238636; padding: 10px; margin-bottom: 10px; border-radius: 5px; background: rgba(35, 134, 54, 0.05); }
         .footer { font-size: 0.7rem; color: #f85149; margin-top: 20px; letter-spacing: 2px; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #238636; border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -24,41 +27,53 @@
         </div>
 
         <input type="number" id="dddInput" placeholder="DIGITE O DDD (EX: 62)">
-        <button class="btn" onclick="buscar()">BUSCAR ADVOGADOS</button>
+        <button class="btn" onclick="buscar()">CONSULTAR BANCO DE DADOS</button>
 
         <div id="resultado"></div>
 
-        <a href="https://wa.me/5562911915107009" class="btn" style="background: transparent; border: 1px solid #238636; color: #238636; margin-top: 20px;">WHATSAPP SUPORTE</a>
+        <a href="https://wa.me/5562911915107009" class="btn" style="background: transparent; border: 1px solid #238636; color: #238636; margin-top: 20px;">FALAR COM O ADMIN</a>
 
         <div class="footer">OPERANDO NO SIGILO</div>
     </div>
 
     <script>
         const database = [
-            { ddd: "62", nome: "Dr. Marcos Silva", especialidade: "Tributário - GO", link: "https://wa.me/5562999999999" },
-            { ddd: "62", nome: "Dra. Aline Souza", especialidade: "Fiscal - GO", link: "https://wa.me/5562988888888" },
-            { ddd: "11", nome: "Dr. Roberto Faro", especialidade: "Tributário - SP", link: "https://wa.me/5511977777777" }
+            // GOIÁS - DDD 62
+            { ddd: "62", nome: "Dr. Marcos Silva", esp: "Tributário/Fiscal", link: "https://wa.me/5562999999999" },
+            { ddd: "62", nome: "Dra. Aline Souza", esp: "Defesa de Crédito", link: "https://wa.me/5562988888888" },
+            { ddd: "62", nome: "Advocacia Rocha", esp: "Imposto de Renda", link: "https://wa.me/5562977777777" },
+            
+            // SÃO PAULO - DDD 11
+            { ddd: "11", nome: "Dr. Roberto Faro", esp: "Tributário SP", link: "https://wa.me/5511999999999" },
+            { ddd: "11", nome: "Dra. Juliana Mendes", esp: "Fiscal/Empresarial", link: "https://wa.me/5511988888888" },
+            
+            // RIO DE JANEIRO - DDD 21
+            { ddd: "21", nome: "Dr. Carlos Eduardo", esp: "Tributário RJ", link: "https://wa.me/5521999999999" },
+            { ddd: "21", nome: "Dra. Fernanda Lima", esp: "Créditos Fiscais", link: "https://wa.me/5521988888888" },
+
+            // MINAS GERAIS - DDD 31
+            { ddd: "31", nome: "Dr. Henrique Neves", esp: "Direito Tributário MG", link: "https://wa.me/5531999999999" },
+            
+            // PARANÁ - DDD 41
+            { ddd: "41", nome: "Dra. Beatriz Santos", esp: "Consultoria Fiscal PR", link: "https://wa.me/5541999999999" }
         ];
 
         function buscar() {
             const ddd = document.getElementById('dddInput').value;
             const resDiv = document.getElementById('resultado');
             resDiv.innerHTML = "";
-
             const filtrados = database.filter(adv => adv.ddd === ddd);
-
             if (filtrados.length > 0) {
                 filtrados.forEach(adv => {
                     resDiv.innerHTML += `
                         <div class="adv-card">
                             <strong>${adv.nome}</strong><br>
-                            ${adv.especialidade}<br>
-                            <a href="${adv.link}" target="_blank" style="color: #00ff41; text-decoration: none; font-weight: bold;">[ABRIR WHATSAPP]</a>
-                        </div>
-                    `;
+                            ${adv.esp}<br>
+                            <a href="${adv.link}" target="_blank" style="color: #00ff41; text-decoration: none; font-weight: bold;">[CHAMAR NO WHATS]</a>
+                        </div>`;
                 });
             } else {
-                resDiv.innerHTML = "<p style='color: #f85149; text-align: center;'>Nenhum advogado encontrado para este DDD.</p>";
+                resDiv.innerHTML = "<p style='color: #f85149; text-align: center;'>DDD ainda não mapeado no sistema.</p>";
             }
         }
     </script>
