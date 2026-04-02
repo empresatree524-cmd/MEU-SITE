@@ -114,38 +114,42 @@
     { ddd: "62", nome: "Marques & Reis", esp: "Direito Público e Fiscal", link: "https://wa.me/556232241010" },
     { ddd: "62", nome: "Dra. Patrícia Lima", esp: "Consultoria em Taxas", link: "https://wa.me/5562992224455" },
     { ddd: "62", nome: "Advocacia Central GO", esp: "Recuperação de Créditos", link: "https://wa.me/556232112233" },
-    { ddd: "62", nome: "Rocha & Silva Associados", esp: "Impostos Estaduais", link: "https://wa.me/5562985554433" },
-    { ddd: "62", nome: "Dra. Eliane Mendes", esp: "Especialista em ITCD", link: "https://wa.me/5562991118877" },
-    { ddd: "62", nome: "Soares & Fontes", esp: "Tributário Industrial", link: "https://wa.me/556230887766" },
-    { ddd: "62", nome: "GT Tributos Goiás", esp: "Auditoria e Fiscal", link: "https://wa.me/556236224411" },
-    { ddd: "62", nome: "Vaz & Associados", esp: "Contencioso de Alto Valor", link: "https://wa.me/556232231515" },
-    { ddd: "62", nome: "Mendes Advocacia", esp: "Defesa de Multas Fiscais", link: "https://wa.me/5562984112233" },
-    { ddd: "62", nome: "Goiás Fiscal Team", esp: "Recuperação de PIS/COFINS", link: "https://wa.me/556235412200" },
+    { ddd: "62", nome: "Rocha & Silva Associados", esp: "Impostos Esconst database = [
+    { ddd: "11", nome: "Velloza Advogados", esp: "Processos Tributários", link: "https://wa.me/551131450055" },
+    { ddd: "62", nome: "Ficht Advocacia", esp: "Execuções Fiscais", link: "https://wa.me/5562981710106" },
+    { ddd: "31", nome: "Moura & Tavares", esp: "Direito Tributário MG", link: "https://wa.me/553132815544" },
+    { ddd: "71", nome: "Gamil Föppel", esp: "Tributário e Penal", link: "https://wa.me/557130117350" },
+    { ddd: "81", nome: "Queiroz Cavalcanti", esp: "Especialista NE", link: "https://wa.me/558132174444" }
+];
 
-    // --- BAHIA (71) --- 20 SELECIONADOS
-    { ddd: "71", nome: "Gamil Föppel Advogados", esp: "Tributário e Penal Econômico", link: "https://wa.me/557130117350" },
-    { ddd: "71", nome: "Vila Nova & Advogados", esp: "Consultoria Fiscal BA", link: "https://wa.me/5571991223344" },
-    { ddd: "71", nome: "Tourinho & Da Purificação", esp: "Tributário Empresarial", link: "https://wa.me/557134524455" },
-    { ddd: "71", nome: "Castro Silva Salvador", esp: "Direito Tributário", link: "https://wa.me/5571999887766" },
-    { ddd: "71", nome: "Mendonça Advogados", esp: "Recuperação de Créditos", link: "https://wa.me/557133412233" },
-    { ddd: "71", nome: "Ferreira & Nobre", esp: "Compliance Fiscal", link: "https://wa.me/557132456677" },
-    { ddd: "71", nome: "Brito Advocacia", esp: "Tributos Municipais", link: "https://wa.me/5571981112222" },
-    { ddd: "71", nome: "Lopes Associados", esp: "Consultoria Tributária", link: "https://wa.me/557130998877" },
-    { ddd: "71", nome: "Santana Advogados BA", esp: "Especialista em ICMS", link: "https://wa.me/5571984443322" },
-    { ddd: "71", nome: "Salvador Fiscal Team", esp: "Defesa de Autuações", link: "https://wa.me/557133221144" },
-    // (Completa para 20 no banco)
+function consultarBanco() {
+    const dddBusca = document.getElementById('dddInput').value.trim();
+    const listaResultados = document.getElementById('listaResultados');
+    const erroMsg = document.getElementById('erroMsg');
+    
+    listaResultados.innerHTML = "";
+    erroMsg.style.display = "none";
 
-    // --- PERNAMBUCO (81) --- 20 SELECIONADOS
-    { ddd: "81", nome: "Queiroz Cavalcanti", esp: "Especialista Tributário NE", link: "https://wa.me/558132174444" },
-    { ddd: "81", nome: "Da Fonte Advogados", esp: "Planejamento Tributário", link: "https://wa.me/558132557700" },
-    { ddd: "81", nome: "Martorelli Advogados", esp: "Direito Fiscal", link: "https://wa.me/558131345500" },
-    { ddd: "81", nome: "Urbano Vitalino", esp: "Compliance e Tributário", link: "https://wa.me/558134122000" },
-    { ddd: "81", nome: "Burtin Advogados", esp: "Contencioso Tributário", link: "https://wa.me/5581992223344" },
-    { ddd: "81", nome: "Albuquerque & Melo", esp: "Recuperação Fiscal PE", link: "https://wa.me/558133221199" },
-    { ddd: "81", nome: "Pernambuco Tributaristas", esp: "Foco Industrial", link: "https://wa.me/5581991118877" },
-    { ddd: "81", nome: "Silva & Santos Recife", esp: "Tributário e Civil", link: "https://wa.me/558134456677" },
-    { ddd: "81", nome: "Gomes Advocacia Digital", esp: "Tributário E-commerce", link: "https://wa.me/5581982223344" },
-    { ddd: "81", nome: "Recife Fiscal Associados", esp: "Dívida Ativa e ICMS", link: "https://wa.me/558133004455" }];
+    const resultados = database.filter(adv => adv.ddd === dddBusca);
+
+    if (resultados.length > 0) {
+        resultados.forEach(adv => {
+            const item = document.createElement('div');
+            item.className = 'resultado-item';
+            item.innerHTML = `
+                <strong>${adv.nome}</strong><br>
+                <small>${adv.esp}</small><br>
+                <a href="${adv.link}" target="_blank">Falar no WhatsApp</a>
+            `;
+            listaResultados.appendChild(item);
+        });
+    } else {
+        erroMsg.style.display = "block";
+    }
+}
+</script>
+</body>
+</html>
 
 
 
